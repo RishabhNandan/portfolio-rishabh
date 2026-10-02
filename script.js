@@ -82,7 +82,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ----------------------------------------------------------------------
-    // 3. Navbar Sticky & Scroll active highlight
+    // 3. Theme Toggle
+    // ----------------------------------------------------------------------
+    const themeToggle = document.getElementById("themeToggle");
+
+    if (themeToggle) {
+        const themeIcon = themeToggle.querySelector("i");
+        const savedTheme = localStorage.getItem("portfolio-theme");
+        const isLightTheme = savedTheme === "light";
+
+        document.body.classList.toggle("light-theme", isLightTheme);
+
+        function updateThemeToggle() {
+            const lightThemeActive = document.body.classList.contains("light-theme");
+            themeToggle.setAttribute("aria-pressed", String(lightThemeActive));
+            themeToggle.setAttribute("aria-label", `Switch to ${lightThemeActive ? "dark" : "light"} theme`);
+            themeToggle.title = `Switch to ${lightThemeActive ? "dark" : "light"} theme`;
+
+            if (themeIcon) {
+                themeIcon.classList.toggle("fa-sun", lightThemeActive);
+                themeIcon.classList.toggle("fa-moon", !lightThemeActive);
+            }
+        }
+
+        updateThemeToggle();
+
+        themeToggle.addEventListener("click", () => {
+            const lightThemeActive = document.body.classList.toggle("light-theme");
+            localStorage.setItem("portfolio-theme", lightThemeActive ? "light" : "dark");
+            updateThemeToggle();
+        });
+    }
+
+    // ----------------------------------------------------------------------
+    // 4. Navbar Sticky & Scroll active highlight
     // ----------------------------------------------------------------------
     const navbar = document.getElementById("navbar");
     const sections = document.querySelectorAll("section");
@@ -113,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // ----------------------------------------------------------------------
-    // 4. Project Filtering
+    // 5. Project Filtering
     // ----------------------------------------------------------------------
     const filterBtns = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");

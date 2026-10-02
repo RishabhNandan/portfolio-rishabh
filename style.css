@@ -145,6 +145,27 @@ nav {
     cursor: pointer;
 }
 
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 auto;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.theme-toggle:hover {
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+}
+
 /* ==========================================================================
    Buttons & Badges
    ========================================================================== */
@@ -988,6 +1009,32 @@ section {
     margin-top: 6px;
 }
 
+body.light-theme {
+    --bg-dark: #f4f7fb;
+    --bg-secondary: #e9eef5;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f6fc;
+    --text-primary: #172033;
+    --text-muted: #526175;
+    --text-dark: #68778c;
+    --accent-cyan: #007f8b;
+    --accent-purple: #2563eb;
+    --accent-green: #0f766e;
+    --accent-glow: rgba(0, 127, 139, 0.18);
+    --border-color: rgba(23, 32, 51, 0.12);
+    --border-highlight: rgba(0, 127, 139, 0.35);
+
+    background-image: radial-gradient(rgba(71, 85, 105, 0.14) 1px, transparent 1px);
+}
+
+body.light-theme #navbar {
+    background: rgba(244, 247, 251, 0.9);
+}
+
+body.light-theme .nav-links {
+    background: rgba(244, 247, 251, 0.98);
+}
+
 /* ==========================================================================
    Modal Dialog Overlay
    ========================================================================== */
@@ -1125,6 +1172,10 @@ section {
         padding: 20px;
         border-bottom: 1px solid var(--border-color);
         display: none;
+    }
+
+    body.light-theme .nav-links {
+        background: rgba(244, 247, 251, 0.98);
     }
 
     .nav-links.active {
